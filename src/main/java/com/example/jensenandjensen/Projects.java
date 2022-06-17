@@ -1,6 +1,8 @@
 package com.example.jensenandjensen;
 
 public class Projects {
+    //declare Projects details
+
     int projectID;
     String projectName;
 

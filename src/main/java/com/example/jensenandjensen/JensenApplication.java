@@ -17,12 +17,14 @@ public class JensenApplication extends Application {
         FXMLLoader fxmlLoader4 = new FXMLLoader(JensenApplication.class.getResource("pomodoro.fxml"));
         FXMLLoader fxmlLoader5 = new FXMLLoader(JensenApplication.class.getResource("doTodayList.fxml"));
         FXMLLoader fxmlLoader6 = new FXMLLoader(JensenApplication.class.getResource("reportPage.fxml"));
+        FXMLLoader fxmlLoader7 = new FXMLLoader(JensenApplication.class.getResource("largScreen.fxml"));
 
 
 
 
 
-        Scene scene = new Scene(fxmlLoader4.load(), 900, 600);
+
+        Scene scene = new Scene(fxmlLoader1.load(), 900, 600);
         stage.setTitle("Jensen & Jensen for Consultant!");
         stage.setScene(scene);
         stage.show();

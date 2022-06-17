@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class doTodayList   {
 
     @FXML
-    private ListView<String> list_area;
+    public ListView<String> list_area;
 
     @FXML
     private TextField list_txt;
@@ -25,22 +25,25 @@ public class doTodayList   {
     public ResultSet rs;
     DBconnection DB=new DBconnection();
 
+    //method to add new task to todolist task
     public void addToDoList(){
          String task= list_txt.getText();
         list_area.getItems().add(" - "+task);
         insertNewTask();
 
     }
+    //method to insert previous task to database
     public  void insertNewTask(){
         try{
 
             conn=DB.getConnection();
-            query="INSERT INTO tasks  VALUES (?,?);";
+            query="INSERT INTO tasks (taskName,taskStatus) VALUES (?,?);";
             ps = conn.prepareStatement(query);
-            ps.setInt(1,44);
-            ps.setString(2,list_txt.getText() );
+             ps.setString(1,list_txt.getText() );
+            ps.setString(2,"not done");
 
-            System.out.println("Inserted records into the table...");
+
+            System.out.println("Records inserted into the table...");
 
             ps.executeUpdate();
             ps.close();
@@ -51,17 +54,20 @@ public class doTodayList   {
         }
 
     }
+    //method to clear text field or selected field in to do list
     public void clearToDoList(){
        int selected=list_area.getSelectionModel().getSelectedIndex();
         list_area.getItems().remove(selected);
         list_txt.setText("");
     }
+    //method to return the selected field
     public String taskToDo(){
         String selected= String.valueOf(list_area.getSelectionModel().getSelectedIndex());
         return selected;
     }
-
+    //method to move to page
     public void backToMainPage() throws IOException {
         String selected= String.valueOf(list_area.getSelectionModel().getSelectedIndex());
+        j.moveToPage("pomodoro.fxml");
        }
 }

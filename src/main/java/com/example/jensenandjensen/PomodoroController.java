@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class PomodoroController extends doTodayList {
 
 
- 
+
 
 
     @FXML
@@ -38,7 +38,7 @@ public class PomodoroController extends doTodayList {
 
 
      Time time = new Time("0:0:0");
-    int counter=0;
+    int counter=1;
     JensenAdminController j=new JensenAdminController();
     RotateTransition rotate=new RotateTransition();
     doTodayList d=new doTodayList();
@@ -69,16 +69,17 @@ public class PomodoroController extends doTodayList {
             e.getMessage();
         }
     }
+    //method to change the status of task
      public void MarkTaskAsDone()  {
         String task=task_txt.getText();
          System.out.println(task);
          try{
 
              conn=DB.getConnection();
-             query="UPDATE  tasks SET taskStatus = 'done' where taskName="+task;
+             query="UPDATE  tasks SET taskStatus = 'done' where taskName=(SELECT TOP 1 taskName FROM tasks where taskStatus='not done');";
              ps = conn.prepareStatement(query);
 
-             System.out.println("  Records has been updated");
+             System.out.println("  Tha Task is done now");
 
              ps.executeUpdate();
 
@@ -92,6 +93,7 @@ public class PomodoroController extends doTodayList {
     //method to enter do-today page
     public void moveToDoTodayPage() throws IOException {
         j.moveToPage("doTodayList.fxml");
+
     }
     //method to enter setPomodoroPage
     public void setPomodoroPage() throws IOException {
@@ -161,7 +163,9 @@ public class PomodoroController extends doTodayList {
                             time.oneSecondPassed();
                             pomodoro_counter_lbl.setText(time.getCurrentTime());
                            // pomodoro_counter_lbl.getText();
-                        }));
+                        }
+
+                        ));
      int value;
 
 

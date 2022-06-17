@@ -1,0 +1,33 @@
+
+.table-view {
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+#tblV_LScreen{
+      -fx-background-color: #38b6ff;
+}
+
+#status_col_LS{
+    -fx-text-fill: red;
+    -fx-text-alignment:center;
+    -fx-row-valignment: #FAF0E6;
+
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+
+
+.table-view .table-cell{
+    -fx-background-color: yallow;
+ }
+.table-row-cell:hover {
+    -fx-background-color: #93f9b911;
+ }

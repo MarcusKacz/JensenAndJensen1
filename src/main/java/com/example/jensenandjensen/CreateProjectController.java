@@ -18,18 +18,20 @@ public class CreateProjectController {
     public ResultSet rs;
     DBconnection DB=new DBconnection();
 
-
+    //method to insert one project to database
     public  void insertNewProject(){
         try{
 
             conn=DB.getConnection();
-            query="INSERT INTO project  VALUES ( ?, ?);";
+            query="INSERT INTO project (projectName) VALUES (?);";
             ps = conn.prepareStatement(query);
-            ps.setInt(1,912677);
-            ps.setString(2, txt_project.getText());
+             ps.setString(1, txt_project.getText());
             System.out.println("Inserted records into the table...");
 
             ps.executeUpdate();
+            ps.close();
+            conn.close();
+
 
 
         }catch (SQLException e){

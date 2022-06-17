@@ -3,6 +3,7 @@ package com.example.jensenandjensen;
 import javafx.scene.control.Button;
 
 public class Consultants {
+    //declare consultants details
     int id;
     String firstName,LastName,UserName,Password,Status;
 
@@ -69,5 +70,9 @@ public class Consultants {
 
     public Consultants( ) {
 
+    }
+    public Consultants( String firstName,String status) {
+        this.firstName = firstName;
+        Status = status;
     }
 }

@@ -18,7 +18,7 @@ public class AdminLoginController {
     JensenAdminController j=new JensenAdminController();
     //method to admin page login
     public void adminLogin() throws IOException {
-        if(username_txt_ad.getText().equals("admin") && password_txt_ad.getText().equals("admin")){
+        if(username_txt_ad.getText().equalsIgnoreCase("admin") && password_txt_ad.getText().equalsIgnoreCase("admin")){
            j.moveToPage("JensenAdmin.fxml");
 
         }else {

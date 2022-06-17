@@ -27,6 +27,7 @@ public class reportPage {
     public void sendByEmail(){
 
     }
+    //method to edit report
     public void EditReport(){
 
     }
@@ -54,7 +55,19 @@ public class reportPage {
     public void print(){
         textarea_report.setText("The consultant ID  " +c.getId()+ " done from this Task \n"
                                  +"the task is one of four task to this Project \n"
-                                 +"this project is name of "
+                                 +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "+"The consultant ID  " +c.getId()+ " done from this Task \n"
+                +"the task is one of four task to this Project \n"
+                +"this project is name of "
 
         );
 

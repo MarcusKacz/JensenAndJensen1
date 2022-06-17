@@ -60,7 +60,7 @@ public class JensenAdminController implements Initializable {
     DBconnection DB=new DBconnection();
 
 
-
+    //method to get project details from database
      public void loadProjectFromDataBase(){
          projectList.clear();
          conn= DB.getConnection();
@@ -87,8 +87,8 @@ public class JensenAdminController implements Initializable {
 
 
      //method to insert data from create consultant page
-    private void loadConsultantFromDataBase() {
-      //  consultantList.clear();
+    public void loadConsultantFromDataBase() {
+      //consultantList.clear();
       conn= DB.getConnection();
 
         try {
@@ -118,9 +118,9 @@ public class JensenAdminController implements Initializable {
             ex.getMessage();
          }  }
 
-
+    //method to initialize the table view of consultant
     public void iniConsultantTableCol(){
-        consultant_col.setCellValueFactory(new PropertyValueFactory<Consultants,Integer>("ID"));
+        consultant_col.setCellValueFactory(new PropertyValueFactory<Consultants,Integer>("id"));
         firstname_col.setCellValueFactory(new PropertyValueFactory<Consultants,String>("FirstName"));
         lastname_col.setCellValueFactory(new PropertyValueFactory<Consultants,String>("LastName"));
         username_col.setCellValueFactory(new PropertyValueFactory<Consultants,String>("UserName"));
@@ -130,7 +130,7 @@ public class JensenAdminController implements Initializable {
         editConsultantTable();
 
     }
-
+    //    //method to initialize the table view of project
     public void iniProjectTableCol(){
         projectID_col.setCellValueFactory(new PropertyValueFactory<Projects,Integer>("ProjectID"));
         projectName_col.setCellValueFactory(new PropertyValueFactory<Projects,String>("ProjectName"));
@@ -147,20 +147,30 @@ public class JensenAdminController implements Initializable {
          stage.show();
 
      }
-
+    //method to set direction to create consultant button
     public void createConsultant() throws IOException {
         moveToPage("CreateConsultant.fxml");
 
     }
+    //method to set direction to create project button
+
     public void createProject() throws IOException {
         moveToPage("createProject.fxml");
 
     }
+    //method to set direction to checkStatus button
+
+    public void checkStatus() throws IOException {
+        moveToPage("largScreen.fxml");
+
+    }
+    //method to set direction to getReport button
+
     public void getReport() throws IOException {
          moveToPage("reportPage.fxml");
     }
 
-
+     //method to make selected item from consultant table view editable
      public void editConsultantTable(){
         /* consultant_col.setCellFactory(TextFieldTableCell.forTableColumn());
          consultant_col.setOnEditCommit(e->{
@@ -193,29 +203,41 @@ public class JensenAdminController implements Initializable {
     ObservableList<Projects> projectList= FXCollections.observableArrayList();
 
 
-    //method to delete selected row in consultant table
+    //method to delete selected row in consultant table from table view and database
      public void deleteConsultant(){
-        int selectedConsultant=tblViewConsult.getSelectionModel().getSelectedIndex();
+        Consultants selectedConsultant=tblViewConsult.getSelectionModel().getSelectedItem();
         tblViewConsult.getItems().remove(selectedConsultant);
         //method to remove from database
+         conn= DB.getConnection();
+         query=("DELETE  from consultant where employeeID = "+selectedConsultant.getId());
+         try {
+             ps=conn.prepareStatement(query);
+             ps.execute();
+             conn.close();
+             ps.close();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
     }
 
-
+     //method to delete selected item of project from table view and database
      public void deleteProject(){
-        int selectedProject=project_tblView.getSelectionModel().getSelectedIndex();
+        Projects selectedProject=project_tblView.getSelectionModel().getSelectedItem();
         project_tblView.getItems().remove(selectedProject);
          //method to remove from database
+         conn= DB.getConnection();
+         query=("DELETE  from project where projectID = "+selectedProject.getProjectID());
+         try {
+             ps=conn.prepareStatement(query);
+             ps.execute();
+             conn.close();
+             ps.close();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
 
      }
 
-   /* public void Adapter(){
-        int selected = 0;
-        if(selected == selectedConsultant){
-            deleteConsultant();
-        }else if(selected == selectedProject){
-            deleteProject();
-        }
-    }*/
 
 
     @Override

@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,25 +35,28 @@ public class CreateConsultantController {
     public PreparedStatement ps;
     public ResultSet rs;
     DBconnection DB=new DBconnection();
+    JensenAdminController j=new JensenAdminController();
+
+    //method to insert one consultant to database
     public void insertConsultantToDataBase(){
-        try{
+         try{
 
             conn=DB.getConnection();
-            query="INSERT INTO consultant  VALUES (?,?,?,?,?,?);";
+            query="INSERT INTO consultant (userName,password,FirstName,LastName,Status) VALUES (?,?,?,?,?);";
             ps = conn.prepareStatement(query);
-            ps.setInt(1,8912);
-            ps.setString(4,txt_name.getText());
-            ps.setString(5,txt_lastname.getText());
-            ps.setString(2,txt_username.getText());
-            ps.setString(3,txt_password.getText());
-            ps.setString(6,txt_status.getText());
+            ps.setString(3,txt_name.getText());
+            ps.setString(4,txt_lastname.getText());
+            ps.setString(1,txt_username.getText());
+            ps.setString(2,txt_password.getText());
+            ps.setString(5,txt_status.getText());
             System.out.println("Inserted records into the table...");
             lbl_message.setText("Inserted records into the table.");
             ps.executeUpdate();
             ps.close();
             conn.close();
+            j.moveToPage("JensenAdmin.fxml");
 
-        }catch (SQLException e){
+        }catch (SQLException | IOException e){
             e.getMessage();
         }
 
