@@ -28,9 +28,6 @@ public class ConsultantLoginController {
     public ResultSet rs;
     DBconnection DB=new DBconnection();
 
-
-
-
     //method for consultant login
     public void consultantLogin() throws IOException, SQLException {
         if (con_username_txt.getText().isBlank()==false && con_password_txt.getText().isBlank()==false){
